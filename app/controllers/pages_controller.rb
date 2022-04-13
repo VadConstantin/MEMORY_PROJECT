@@ -4,6 +4,9 @@ class PagesController < ApplicationController
     #initialisation de toutes les transactions
     @transactions = Transaction.all
 
+    #filtres avec PG search
+    params[:country].present? ? @transactions = @transactions.search_by_country(params[:country]).reorder('').distinct : @transactions = Transaction.all
+
     #calcul du montant total
     @total = 0
     @transactions.each do |trans|
