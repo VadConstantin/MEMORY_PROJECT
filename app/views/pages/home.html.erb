@@ -20,17 +20,17 @@
 
     <div class="card-1">
       <h5>Revenue</h5>
-      <h2><%= @total.round(2) %> €</h2>
+      <h2><%= @total.round(3).si %> €</h2>
     </div>
 
     <div class="card-2">
       <h5>Average revenue per order</h5>
-      <h2><%= @average_revenue_per_order.round(2) %> €</h2>
+      <h2><%= @average_revenue_per_order.round(2).si %> €</h2>
     </div>
 
     <div class="card-3">
       <h5>Customers</h5>
-      <h2><%= @unique_customers %></h2>
+      <h2><%= @unique_customers.si %></h2>
     </div>
 
   </div>
