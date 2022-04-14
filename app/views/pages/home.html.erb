@@ -37,5 +37,11 @@
 
   <%# -------------- Charts ----------------%>
 
+  <div class="mt-5 mb-5">
+
+    <h2 class="mb-4">Revenue / month <%=params[:country].present? ? "in #{params[:country]}" : ""  %></h2>
+    <%= column_chart @graph_transactions%>
+
+  </div>
 
 </div>

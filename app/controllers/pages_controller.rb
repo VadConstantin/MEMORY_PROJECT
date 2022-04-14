@@ -21,6 +21,9 @@ class PagesController < ApplicationController
     #calcul du nombre de clients uniques
     @unique_customers = count_unique_customers(@transactions)
 
+    #graph
+    @graph_transactions = @transactions.group_by_month(:date, format: "%B %Y").sum(:quantity)
+
   end
 
 
