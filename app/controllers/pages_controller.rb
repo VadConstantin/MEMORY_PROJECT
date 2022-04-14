@@ -6,6 +6,7 @@ class PagesController < ApplicationController
 
     #filtres avec PG search
     params[:country].present? ? @transactions = @transactions.search_by_country(params[:country]).reorder('').distinct : @transactions = Transaction.all
+    @transactions = Transaction.all if params[:country] == "All"
 
     #calcul du montant total
     @total = 0

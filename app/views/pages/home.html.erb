@@ -11,7 +11,11 @@
 
   <%# ------------Summary-------------- %>
 
- Summary
+  <% if params[:country].present? && params[:country] != "All" %>
+    <h2 class="mt-3">Summary in <%=params[:country] %> </h2>
+  <% else %>
+    <h2>Summary</h2>
+  <% end %>
 
   <div class="cards-container">
 
