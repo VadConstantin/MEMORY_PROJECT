@@ -10,7 +10,6 @@
 require 'csv'
 
 CSV.foreach('lib/memory-tech-challenge-data.csv', headers: true) do |row|
-
   Transaction.create({
     date: row[0],
     order_id: row[1],
