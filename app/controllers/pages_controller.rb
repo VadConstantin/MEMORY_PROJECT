@@ -19,7 +19,7 @@ class PagesController < ApplicationController
 
     # calcul de la moyenne par order
     unique_orders = count_unique_orders(transactions)
-    @average_revenue_per_order = @total.fdiv(unique_orders)
+    @average_revenue_per_order = @total.fdiv(unique_orders) if unique_orders != 0
 
     # calcul du nombre de clients uniques
     @unique_customers = count_unique_customers(transactions)
@@ -31,26 +31,17 @@ class PagesController < ApplicationController
   private
 
   def count_unique_orders(transactions)
-    array_of_orders = []
-    transactions.each do |t|
-      array_of_orders << t.order_id
-      end
-    return array_of_orders.group_by{|e| e}.length
+    array_of_orders = transactions.map {|transaction| transaction.order_id}
+    return array_of_orders.uniq.length
   end
 
   def count_unique_customers(transactions)
-    array_of_customers = []
-    transactions.each do |t|
-      array_of_customers << t.customer_id
-    end
-    return array_of_customers.group_by{|e| e}.length
+    array_of_customers = transactions.map {|transaction| transaction.customer_id}
+    return array_of_customers.uniq.length
   end
 
   def count_unique_countries(transactions)
-    array_of_countries = []
-    transactions.each do |t|
-      array_of_countries << t.country
-    end
+    array_of_countries = transactions.map {|transaction| transaction.country}
     return array_of_countries.group_by {|country| country}.map {|k, v| [k]}.flatten
   end
 end
