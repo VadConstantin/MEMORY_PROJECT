@@ -11,6 +11,8 @@ class PagesController < ApplicationController
     all_transactions = Transaction.all
     @countries = count_unique_countries(all_transactions)
 
+    @countries2 = Transaction.select(:country)
+
     # calcul du montant total
     @total = 0
     transactions.each do |trans|
