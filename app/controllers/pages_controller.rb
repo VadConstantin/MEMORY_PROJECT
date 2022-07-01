@@ -11,17 +11,14 @@ class PagesController < ApplicationController
     all_transactions = Transaction.all
     @countries = count_unique_countries(all_transactions)
 
-    @countries2 = Transaction.select(:country)
-
     # calcul du montant total
-    @total = 0
-    transactions.each do |trans|
-      @total += (trans.unit_price * trans.quantity)
-    end
+    @total = Transaction.total
 
     # calcul de la moyenne par order
-    unique_orders = count_unique_orders(transactions)
-    @average_revenue_per_order = @total.fdiv(unique_orders) if unique_orders != 0
+    @unique_orders = Transaction.unique_orders
+    # unique_orders = count_unique_orders(transactions)
+    # @average_revenue_per_order = @total.fdiv(unique_orders) if unique_orders != 0
+    @average_revenue_per_order = Transaction.average_revenue_per_order
 
     # calcul du nombre de clients uniques
     @unique_customers = count_unique_customers(transactions)

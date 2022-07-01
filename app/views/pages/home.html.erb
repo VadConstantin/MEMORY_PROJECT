@@ -2,8 +2,6 @@
 
   <%# --------Search / filter---------- %>
 
-  <%=@countries2 %>
-
   <div class="search">
     <h2>Country</h2>
     <%= render 'shared/search'  %>
@@ -25,6 +23,13 @@
       <h2><%= @total.round(3).si %> €</h2>
     </div>
 
+    <div class="card-1">
+      <h5>Unique orders</h5>
+      <h2><%= @unique_orders%> </h2>
+    </div>
+
+
+
     <div class="card-2">
       <h5>Average revenue per order</h5>
       <h2><%= @average_revenue_per_order.round(2).si %> €</h2>
@@ -39,11 +44,6 @@
 
   <%# -------------- Charts ----------------%>
 
-  <div class="mt-5 mb-5">
 
-    <h2 class="mb-4">Revenue / month <%=params[:country].present? ? "in #{params[:country]}" : ""  %></h2>
-    <%= column_chart @graph_transactions%>
-
-  </div>
 
 </div>
